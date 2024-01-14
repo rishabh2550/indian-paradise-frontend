@@ -1,0 +1,21 @@
+@import "../../../../responsive";
+@import "../../../../primary_colors";
+
+.box {
+    overflow: hidden;
+}
+
+.text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    @include breakpoint-xs {
+        font-size: 14px;
+    }
+    @include breakpoint-sm {
+        font-size: 18px;
+    }
+}
+
+.red-color {
+    color: $DARK_RED;
+}

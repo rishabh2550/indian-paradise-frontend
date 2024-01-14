@@ -1,0 +1,50 @@
+@import "breakpoints";
+
+// xs with no lower limit
+@mixin breakpoint-xs {
+    @media screen and (max-width: $XS_MAX_WIDTH) {
+        @content;
+    }
+}
+
+// sm with min-width
+@mixin breakpoint-sm {
+    @media screen and (min-width: $SM_MIN_WIDTH) {
+        @content;
+    }
+}
+
+// sm with range
+@mixin breakpoint-sm-range {
+    @media only screen and (min-width: $SM_MIN_WIDTH) and (max-width: $SM_MAX_WIDTH) {
+        @content;
+    }
+}
+
+// md with min-width
+@mixin breakpoint-md {
+    @media screen and (min-width: $MD_MIN_WIDTH) {
+        @content;
+    }
+}
+
+// md with range
+@mixin breakpoint-md-range {
+    @media only screen and (min-width: $MD_MIN_WIDTH) and (max-width: $MD_MAX_WIDTH) {
+        @content;
+    }
+}
+
+// lg
+@mixin breakpoint-lg {
+    @media only screen and (min-width: $LG_MIN_WIDTH) {
+        @content;
+    }
+}
+
+// xl
+@mixin breakpoint-xl {
+    @media only screen and (min-width: $XL_MIN_WIDTH) {
+        @content;
+    }
+}

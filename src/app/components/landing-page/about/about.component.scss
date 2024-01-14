@@ -1,0 +1,41 @@
+@import "../../../../primary_colors";
+@import "../../../../responsive";
+
+img {
+    width: 100%;
+    @include breakpoint-xs {
+        height: 20vh;
+    }
+    @include breakpoint-sm-range {
+        height: 25vh;
+    }
+    @include breakpoint-md-range {
+        height: 30vh;
+    }
+    @include breakpoint-lg {
+        height: 40vh;
+    }
+    @include breakpoint-xl {
+        height: 50vh;
+    }
+}
+
+.grey-box {
+    background-color: $GREY_BACKGROUND;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    @include breakpoint-xs {
+        font-size: 20px;
+    }
+    @include breakpoint-sm {
+        font-size: 28px;
+    }
+    @include breakpoint-lg {
+        font-size: 32px;
+    }
+}
+
+

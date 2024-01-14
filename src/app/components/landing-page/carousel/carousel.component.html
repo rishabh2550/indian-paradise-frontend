@@ -1,0 +1,25 @@
+<div id="slider" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" 
+      *ngFor="let object of homeCarousel; let i=index" 
+      data-bs-target="#slider" 
+      [attr.data-bs-slide-to]="i" 
+      [ngClass]="{'active': i==0}">
+    </button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item" [ngClass]="{'active': i==0}" *ngFor="let object of homeCarousel; index as i">
+      <img [src]="object.safeUrl" alt="home carousel image {{i}}" class="d-block responsive-img-height">
+      <div class="carousel-caption">
+        <h3>{{ object.header }}</h3>
+        <p>{{ object.description }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev d-none d-md-block" type="button" data-bs-target="#slider" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next d-none d-md-block" type="button" data-bs-target="#slider" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>

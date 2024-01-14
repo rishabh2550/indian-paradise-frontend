@@ -1,0 +1,11 @@
+<div class="container mt-5 mb-5 px-0">
+    <div class="row grey-box p-3 mx-3">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-12 px-0">
+            <img [src]="aboutSection?.safeUrl" alt="about section image">
+        </div>
+        <div class="col-xl-8 col-lg-7 col-md-6 col-12 px-0 px-md-3 pt-3 pt-md-0">
+            <h3>{{ aboutSection?.header }}</h3>
+            <ng-container *ngIf="aboutSection"><app-read-more [text]="aboutSection.description"></app-read-more></ng-container>
+        </div>
+    </div>
+</div>

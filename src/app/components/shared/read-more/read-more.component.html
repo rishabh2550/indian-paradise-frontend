@@ -1,0 +1,9 @@
+<div>
+    <div class="box" #animatedDiv [@collapse]="{value: animState, params:{iniHeight: animIniHeight, finHeight: animFinHeight}}">
+        <p class="text mb-0">{{ showFullText ? fullText : truncatedText }}</p>
+    </div>
+    <div *ngIf="fullText.length !== truncatedText.length-1">
+        <span class="text red-color" (click)="toggleReadMore()">{{ toggleText }} </span>
+    </div>
+</div>
+
