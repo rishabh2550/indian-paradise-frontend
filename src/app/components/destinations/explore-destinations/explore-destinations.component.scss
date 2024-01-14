@@ -4,13 +4,6 @@
 @import 'swiper/scss/pagination';
 @import 'swiper/css/effect-coverflow';
 
-body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #EFEFEF;
-}
 .card {
     transition: box-shadow .3s;
     border-radius:25px;
