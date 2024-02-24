@@ -1,0 +1,54 @@
+<div class="slider-effectCoverflow">
+    <swiper
+        [effect]="'coverflow'"
+        [grabCursor]="true"
+        [centeredSlides]="true"
+        [slidesPerView]="3"
+        [coverflowEffect]="{
+            rotate: 0,
+            stretch: 0,
+            depth: 250,
+            modifier: 2,
+            slideShadows: true
+        }"
+        [loop]="true"
+        [loopedSlides]="3"
+        [navigation]="true"
+        class="mySwiper d-none d-lg-block">
+        <ng-template swiperSlide *ngFor="let object of cardImages; index as i">
+            <div class="card card-dim" (click)="clickCard(object)">
+                <img [src]="cardImages[i].safeUrl" class="card-img" alt="cityImage">
+                <div class="overlay-text">
+                    <h3 class="mx-2 mb-0">{{ object.imageName | imageName }}</h3>
+                    <p class="mx-2 mb-0">{{ object.description }}</p>
+                </div>
+            </div>
+        </ng-template>
+    </swiper>
+    <swiper
+        [effect]="'coverflow'"
+        [grabCursor]="true"
+        [centeredSlides]="true"
+        [slidesPerView]="2"
+        [coverflowEffect]="{
+            rotate: 0,
+            stretch: 0,
+            depth: 0,
+            modifier: 0,
+            slideShadows: true
+        }"
+        [loop]="true"
+        [loopedSlides]="3"
+        [navigation]="true"
+        class="mySwiper d-lg-none">
+        <ng-template swiperSlide *ngFor="let object of cardImages; index as i">
+            <div class="card card-dim">
+                <img [src]="cardImages[i].safeUrl" class="card-img" alt="cityImage">
+                <div class="overlay-text">
+                    <h3 class="mx-2 mb-0">{{ object.imageName | imageName }}</h3>
+                    <p class="mx-2 mb-0 d-none d-md-block">{{ object.description }}</p>
+                </div>
+            </div>
+        </ng-template>
+    </swiper>
+</div>

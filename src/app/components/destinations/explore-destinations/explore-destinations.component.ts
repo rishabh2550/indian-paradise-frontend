@@ -1,39 +1,54 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import SwiperCore, { Navigation, Pagination, EffectCoverflow } from 'swiper';
-
-SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
+import { Component, OnInit } from '@angular/core';
+import { CardImage } from 'src/app/models/CardImage';
+import { CityImage } from 'src/app/models/CityImage';
+import { ImagesService } from 'src/app/services/images-service/images.service';
 
 @Component({
   selector: 'app-explore-destinations',
   templateUrl: './explore-destinations.component.html',
-  styleUrls: ['./explore-destinations.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./explore-destinations.component.scss']
 })
 export class ExploreDestinationsComponent implements OnInit {
 
-  windowWidth: number = 0;
-  cardsPerView: number = 4;
+  cityImages: CityImage[] = [];
+  cardImages: CardImage[] = [];
+
+  constructor(private imagesService: ImagesService) {}
 
   ngOnInit(): void {
-    this.windowWidth = window.innerWidth;
-    if (this.windowWidth > 768) {
-      this.cardsPerView = 4;
-    }else if (this.windowWidth <= 320) {
-      this.cardsPerView = 2;
-    }else {
-      this.cardsPerView = 3;
+    this.loadData();
+  }
+
+  private loadData() {
+    this.imagesService.fetchPrimaryCityImages().subscribe(
+      (data) => {
+        this.imagesService.cityImages = data;
+        this.createImageUrls();
+        this.cityImages = this.imagesService.cityImages;
+        console.log('this.cityImages ', this.cityImages);
+        this.createCardImagesArray();
+        console.log('this.cardImages ', this.cardImages);
+      },
+      (error) => {
+        console.error('error in fetchPrimaryCityImages: ', error);
+      });
+  }
+
+  private createImageUrls() {
+    for(let i=0; i<this.imagesService.cityImages.length; i++) {
+      const imageName = this.imagesService.cityImages[i].imageName;
+      const bytes = this.imagesService.cityImages[i].image;
+      this.imagesService.cityImages[i].safeUrl = this.imagesService.createImageUrl(imageName, bytes);
     }
   }
 
-  @HostListener('window:resize')
-  onResize() {
-    this.windowWidth = window.innerWidth;
-    if (this.windowWidth > 912) {
-      this.cardsPerView = 4;
-    }else if (this.windowWidth <= 320) {
-      this.cardsPerView = 2;
-    }else {
-      this.cardsPerView = 3;
+  private createCardImagesArray() {
+    for(let i=0; i<this.cityImages.length; i++) {
+      this.cardImages.push({
+        imageName: this.cityImages[i].imageName,
+        description: this.cityImages[i].description,
+        safeUrl: this.cityImages[i].safeUrl
+      });
     }
   }
 

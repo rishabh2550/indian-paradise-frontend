@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AboutSection } from 'src/app/models/AboutSection';
+import { CityImage } from 'src/app/models/CityImage';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ImagesService {
   apiUrl = 'http://localhost:2001';
   homeCarousel: HomeCarousel[] = [];
   aboutSection: AboutSection | null = null;
+  cityImages: CityImage[] = [];
 
   constructor(private http: HttpClient,
               private domSanitizer: DomSanitizer) { }
@@ -39,6 +41,10 @@ export class ImagesService {
     const file = new File([blob], imageName, {type: 'image/jpeg'});
 
     return this.domSanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
+  }
+
+  public fetchPrimaryCityImages(): Observable<CityImage[]> {
+    return this.http.get<CityImage[]>(`${this.apiUrl}/fetchPrimaryCityImages`);
   }
 
 }

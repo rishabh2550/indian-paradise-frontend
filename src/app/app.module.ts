@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReadMoreComponent } from './components/shared/read-more/read-more.component';
 import { SwiperModule } from 'swiper/angular';
+import { ImageNamePipe } from './pipes/image-name/image-name.pipe';
+import { CardsSliderComponent } from './components/shared/cards-slider/cards-slider.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SwiperModule } from 'swiper/angular';
     HomeComponent,
     AboutComponent,
     ContentComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
+    ImageNamePipe,
+    CardsSliderComponent
   ],
   imports: [
     BrowserModule,

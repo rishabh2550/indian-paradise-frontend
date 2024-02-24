@@ -30,6 +30,7 @@ export class ReadMoreComponent implements OnInit, AfterViewInit {
   animState: AnimState = AnimState.INITIAL1;
   toggleText: string = 'Read More';
 
+  maxTextLengthSmall: number = 120;
   maxTextLengthMedium: number = 215
   maxTextLengthLarge: number = 335;
   maxTextLengthXLarge = 985;
@@ -50,7 +51,12 @@ export class ReadMoreComponent implements OnInit, AfterViewInit {
   private truncateText() {
     this.fullText = this.text;
     const words = this.fullText.split(' ');
-    if(this.windowWidth < 992) {
+    if(this.windowWidth < 768) {
+      let i = 0;
+      while(this.truncatedText.length <= this.maxTextLengthSmall && i< words.length) {
+        this.truncatedText = this.truncatedText + words[i++] + ' ';
+      }
+    }else if(this.windowWidth < 992) {
       let i = 0;
       while(this.truncatedText.length <= this.maxTextLengthMedium && i< words.length) {
         this.truncatedText = this.truncatedText + words[i++] + ' ';
